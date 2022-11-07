@@ -1,34 +1,32 @@
 #include<stdio.h>
+int MaxNum2(int* arr, int len)
+{
+ int max = 0;
+ int sum = 0;
+ int i;
+ for (i = 0; i < len; i++)
+ {
+  if (sum <= 0)
+  {
+   sum = arr[i];
+  }
+  else
+  {
+   sum += arr[i];
+  }
 
-int MaxSubArray(int* A, int n)
-{
-int maxSum = A[0];
-int currSum = 0;
- for (int i = 0; i < n; i++)
-{
-for (int j = i; j < n; j++)
-{
-for (int k = i; k <= j; k++)
-{
-currSum += A[k];
+  if (sum > max)
+  {
+   max = sum;
+  }
  }
- if (currSum > maxSum)
- maxSum = currSum;
-
-currSum = 0; 
+ return max;
 }
-}
-return maxSum;
-}
-
 int main()
 {
-int a[20],n;
- scanf("%d",&n);
- for(int i = 0; i < n; i++)
-{
- scanf("%d",&a[i]);
-}
-printf("最大字串和为:%d",MaxSubArray(a,n));
-return 0;
+ int arr[6] = { -2,11,-4,13,-5,-2 };  
+ int len = sizeof(arr) / sizeof(arr[0]);
+ int max = MaxNum2(arr, len);
+ printf("%d\n", max);
+ return 0;
 }
